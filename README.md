@@ -79,9 +79,9 @@ without betting your SSH keys and cloud tokens on it being honest.
 python ghl_jail.py run --project C:\scratch -- suspicious-tool.exe --do-its-thing
 ```
 
-- **Alcance:** the tool sees an empty scratch folder and nothing else of yours; no network to exfiltrate to.
-- **Impacto:** a backdoored tool like the OVHcloud CLI case finds no credentials on disk and no way out.
-- **Diferencial:** antivirus asks "is this file *known* bad?" and waves through anything new. A VM or Docker Desktop would do
+- **Scope:** the tool sees an empty scratch folder and nothing else of yours; no network to exfiltrate to.
+- **Impact:** a backdoored tool like the OVHcloud CLI case finds no credentials on disk and no way out.
+- **Edge:** antivirus asks "is this file *known* bad?" and waves through anything new. A VM or Docker Desktop would do
   the job but needs Pro/Hyper-V, gigabytes, and minutes to boot. `ghl-jail` is a one-line wrapper that starts instantly and
   works on Windows Home with no admin rights.
 
@@ -94,11 +94,11 @@ nothing else — not your other projects, not your dotfiles — and not to call 
 python ghl_jail.py run --project C:\work\my-repo --net none -- agent --task "refactor the parser"
 ```
 
-- **Alcance:** the agent reads and writes only `my-repo`; a stray `rm` or a bad path can't reach your other folders, and it
+- **Scope:** the agent reads and writes only `my-repo`; a stray `rm` or a bad path can't reach your other folders, and it
   can't read a token sitting in another project.
-- **Impacto:** the blast radius of a confused or prompt-injected agent is one repository you can `git reset`, not your whole
+- **Impact:** the blast radius of a confused or prompt-injected agent is one repository you can `git reset`, not your whole
   account.
-- **Diferencial:** the agents that *do* ship a Windows sandbox (OpenAI's Codex) only sandbox *themselves*. `ghl-jail` is
+- **Edge:** the agents that *do* ship a Windows sandbox (OpenAI's Codex) only sandbox *themselves*. `ghl-jail` is
   agent-agnostic — it wraps whatever agent, script, or tool you hand it, the same way every time.
 
 ### 3. Install dependencies without handing over your npm/pip credentials
@@ -110,11 +110,11 @@ in the environment. Here the tool needs the network but still should not read yo
 python ghl_jail.py run --project C:\work\app --mode token --net internet -- npm install
 ```
 
-- **Alcance:** install scripts can reach the registry and write into the project's `node_modules`, but your `~/.ssh`,
+- **Scope:** install scripts can reach the registry and write into the project's `node_modules`, but your `~/.ssh`,
   `~/.aws`, and any secret you didn't explicitly pass with `--keep-env` stay invisible.
-- **Impacto:** a malicious post-install script (the npm supply-chain attack pattern) cannot read credentials off your disk or
+- **Impact:** a malicious post-install script (the npm supply-chain attack pattern) cannot read credentials off your disk or
   your environment.
-- **Diferencial:** lockfile checkers and `npm audit` tell you about *known* bad packages after the fact. This contains the
+- **Edge:** lockfile checkers and `npm audit` tell you about *known* bad packages after the fact. This contains the
   install itself, including a brand-new malicious package no scanner has flagged yet.
 
 ---
