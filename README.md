@@ -1,4 +1,4 @@
-# ghl-jail
+# Gap Hunter Labs - Jail
 
 ![ghl-jail demo: create a project, add the tool, write inside (allowed), read a secret outside (blocked), no network, git, cleanup](demo.gif)
 
