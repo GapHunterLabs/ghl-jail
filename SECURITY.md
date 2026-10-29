@@ -20,7 +20,7 @@ or pull request.
 
 - **Preferred:** GitHub private vulnerability reporting, the **Report a
   vulnerability** button under this repository's **Security** tab.
-- **Alternative:** email **gaphunterlabs@gmail.com** with the subject
+- **Alternative:** email **contact@gaphunterlabs.com** with the subject
   `SECURITY: ghl-jail`.
 
 Include the Windows edition and build, the Python version, the exact command
